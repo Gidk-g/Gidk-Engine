@@ -12,11 +12,11 @@ This is the repository for Gidk Engine, an engine created for making and playing
 - Custom Note Type
 
 ## Credits
-* Gidk - Programmer of Gidk Engine
-* Teotm - Assistant Programmer of Gidk Engine
+* [Gidk](https://github.com/Gidk-g) - Programmer of Gidk Engine
+* [Teotm](https://github.com/teotm) - Assistant Programmer of Gidk Engine
 
 ### Special Thanks
-* Leather128 - Programmer of [Funkin Multikey](https://github.com/Leather128/Funkin-Multikey)
+* [Leather128](https://github.com/Leather128) - Programmer of [Funkin Multikey](https://github.com/Leather128/Funkin-Multikey)
 
 # Compiling The Game
 1. [Install git-scm](https://git-scm.com/downloads) if you don't have it already.
