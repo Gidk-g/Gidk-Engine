@@ -2203,7 +2203,7 @@ class PlayState extends MusicBeatState {
 		timeTxt.x -= 30;
 	}
 
-	var endingSong:Bool = false;
+	public var endingSong:Bool = false;
 
 	public function popUpScore(strumtime:Float, daNote:Note):Void {
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
