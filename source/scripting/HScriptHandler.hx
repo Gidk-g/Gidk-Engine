@@ -112,6 +112,14 @@ class HScriptHandler
         interp.variables.set("CoolUtil", CoolUtil);
         interp.variables.set("DancingSprite", DancingSprite);
 
+        script.interp.variables.set("add", function(value:Dynamic) {
+			PlayState.instance.add(value);
+		});
+
+        script.interp.variables.set("remove", function(value:Dynamic) {
+            PlayState.instance.remove(value);
+        });
+
         interp.variables.set("Json", {
             "parse": function(data:String) {return TJSON.parse(data);},
             "stringify": function(data:Dynamic, thing:String = "\t") {return TJSON.encode(data, thing == "\t" ? "fancy" : null);}
