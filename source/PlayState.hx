@@ -848,27 +848,6 @@ class PlayState extends MusicBeatState {
 			stage_script.interp.variables.set("dad", dad);
 		}
 
-		script.interp.variables.set("setDefaultZoom", function(value:Dynamic) {
-			defaultCamZoom = value;
-		});
-
-		script.interp.variables.set("setGF", function(value:Dynamic) {
-			gfVersion = value;
-		});
-
-		script.interp.variables.set("curGF", function() {
-			return gfVersion;
-		});
-
-		script.interp.variables.set("createTrail", function(char:Dynamic, graphic:Dynamic, length:Dynamic, delay:Dynamic, alpha:Dynamic, diff:Dynamic, ?addInGroup:Dynamic, ?group:Dynamic) {
-			var trail = new FlxTrail(char, graphic, length, delay, alpha, diff);
-
-			if (addInGroup == true && group != null)
-				group.add(trail);
-			else
-				add(trail);
-		});
-
 		allScriptCall("createStage");
 
 		add(gf);
