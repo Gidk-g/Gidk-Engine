@@ -33,9 +33,8 @@ class HScriptHandler
     {
         program = parser.parseString(Assets.getText(hscript_path));
 
-        parser.allowTypes = true;
-        parser.allowJSON = true;
-        parser.allowMetadata = true;
+		parser.allowTypes = parser.allowJSON = parser.allowMetadata = true;
+		interp.allowPublicVariables = interp.allowStaticVariables = true;
 
         setDefaultVariables();
 
@@ -161,7 +160,5 @@ class HScriptHandler
             func();
             #end
         });
-
-        interp.allowStaticVariables = interp.allowPublicVariables = true;
     }
 }
