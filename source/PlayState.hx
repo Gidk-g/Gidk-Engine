@@ -1034,11 +1034,6 @@ class PlayState extends MusicBeatState {
 						var cutscene = new HScriptHandler(Paths.hx("cutscenes/" + SONG.song.toLowerCase()));
 						cutscene.start();
 						scripts.push(cutscene);
-					} else if (Assets.exists(Paths.hx("cutscenes/" + SONG.song.toLowerCase() + "-end"))) {
-						var cutscene = new HScriptHandler(Paths.hx("cutscenes/" + SONG.song.toLowerCase() + "-end"));
-						cutscene.start();
-						endingSong = true;
-						scripts.push(cutscene);
 					} else
 						startCountdown();
 			}
