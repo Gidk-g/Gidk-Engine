@@ -113,35 +113,6 @@ class HScriptHandler
         interp.variables.set("CoolUtil", CoolUtil);
         interp.variables.set("DancingSprite", DancingSprite);
 
-        interp.variables.set("add", function(value:Dynamic) {
-			PlayState.instance.add(value);
-		});
-
-        interp.variables.set("remove", function(value:Dynamic) {
-            PlayState.instance.remove(value);
-        });
-
-		interp.variables.set("setDefaultZoom", function(value:Dynamic) {
-			PlayState.instance.defaultCamZoom = value;
-		});
-
-		interp.variables.set("setGF", function(value:Dynamic) {
-			PlayState.instance.gfVersion = value;
-		});
-
-		interp.variables.set("curGF", function() {
-			return PlayState.instance.gfVersion;
-		});
-
-		interp.variables.set("createTrail", function(char:Dynamic, graphic:Dynamic, length:Dynamic, delay:Dynamic, alpha:Dynamic, diff:Dynamic, ?addInGroup:Dynamic, ?group:Dynamic) {
-			var trail = new FlxTrail(char, graphic, length, delay, alpha, diff);
-
-			if (addInGroup == true && group != null)
-				group.add(trail);
-			else
-				PlayState.instance.add(trail);
-		});
-
         interp.variables.set("Json", {
             "parse": function(data:String) {return TJSON.parse(data);},
             "stringify": function(data:Dynamic, thing:String = "\t") {return TJSON.encode(data, thing == "\t" ? "fancy" : null);}
