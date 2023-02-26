@@ -9,7 +9,6 @@ import sys.thread.Thread;
 import openfl.utils.Assets;
 import lime.app.Application;
 import scripting.HScriptClasses;
-import flixel.addons.effects.FlxTrail;
 import flixel.graphics.tile.FlxGraphicsShader;
 
 using StringTools;
