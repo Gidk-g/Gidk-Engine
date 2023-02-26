@@ -29,7 +29,7 @@ class HScriptHandler
 
     public var createPost:Bool = false;
 
-    public function new(hscript_path: String)
+    public function new(hscript_path:String)
     {
         program = parser.parseString(Assets.getText(hscript_path));
 
