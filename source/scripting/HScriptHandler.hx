@@ -31,13 +31,12 @@ class HScriptHandler
 
     public function new(hscript_path:String)
     {
-        program = parser.parseString(Assets.getText(hscript_path));
-
 		parser.allowTypes = parser.allowJSON = parser.allowMetadata = true;
 		interp.allowPublicVariables = interp.allowStaticVariables = true;
 
         setDefaultVariables();
 
+        program = parser.parseString(Assets.getText(hscript_path));
         interp.execute(program);
     }
 

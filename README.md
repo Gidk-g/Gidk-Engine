@@ -4,7 +4,6 @@ This is the repository for Gidk Engine, an engine created for making and playing
 
 # To Do
 
-- Custom States
 - Custom Events
 - Custom Shaders
 - Custom Dialogue

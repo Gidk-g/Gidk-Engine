@@ -550,9 +550,7 @@ class Character extends FlxSprite
 		if(Assets.exists(Paths.hx("characters/" + curCharacter)))
 		{
 			script = new HScriptHandler(Paths.hx("characters/" + curCharacter));
-
 			script.interp.variables.set("character", this);
-
 			script.callFunction("createCharacter", [curCharacter, isPlayer]);
 		}
 
