@@ -4,6 +4,7 @@ import Song;
 import Week;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
@@ -132,8 +133,18 @@ class FreeplayState extends MusicBeatState
 			&& (!StoryMenuState.weekCompleted.exists(daWeek.unlockAfter) || !StoryMenuState.weekCompleted.get(daWeek.unlockAfter)));
 	}
 
+	var instPlaying:Int = -1;
+
+	public static var vocals:FlxSound = null;
+
 	override function update(elapsed:Float)
 	{
+		if (FlxG.sound.music.volume < 0.7)
+			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
+
+		if (FlxG.sound.music.playing)
+			Conductor.songPosition = FlxG.sound.music.time;
+
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.4));
 
 		if (Math.abs(lerpScore - intendedScore) <= 10)
@@ -164,23 +175,79 @@ class FreeplayState extends MusicBeatState
 		else if (controls.UI_RIGHT_P)
 			changeDiff(1);
 
-		if (controls.ACCEPT)
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			#if PRELOAD_ALL
+			if (vocals != null) {
+				vocals.stop();
+				vocals.destroy();
+				vocals = null;
+			}
+
+			FlxG.sound.music.volume = 0;
+
+			var poop:String = Highscore.formatSong(songs[curSelected].name.toLowerCase(), curDifficulty);
+			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].name.toLowerCase());
+
+			if (PlayState.SONG.needsVoices)
+				vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
+			else
+				vocals = new FlxSound();
+
+			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
+
+			FlxG.sound.list.add(vocals);
+			FlxG.sound.music.play(true);
+
+			if (vocals != null)
+				vocals.play();
+			vocals.persist = false;
+			vocals.looped = true;
+
+			instPlaying = curSelected;
+
+			Conductor.changeBPM(PlayState.SONG.bpm);
+			Conductor.mapBPMChanges(PlayState.SONG);
+			#end
+		}
+
+		if (FlxG.keys.justPressed.ENTER)
 		{
 			var poop:String = Highscore.formatSong(songs[curSelected].name.toLowerCase(), curDifficulty);
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].name.toLowerCase());
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
 			PlayState.storyWeek = songs[curSelected].week;
+
 			if (FlxG.keys.pressed.SHIFT){
 				FlxG.switchState(new ChartingState());
 			}else{
 				LoadingState.loadAndSwitchState(new PlayState());
 			}
+
+			if (FlxG.sound.music != null)
+				FlxG.sound.music.stop();
+
+			if (vocals != null) {
+				vocals.stop();
+				vocals.destroy();
+				vocals = null;
+			}
 		}
 		else if (controls.BACK)
 			FlxG.switchState(new MainMenuState());
 
+		for (icon in iconArray)
+			icon.scale.set(FlxMath.lerp(icon.scale.x, 1, elapsed * 9), FlxMath.lerp(icon.scale.y, 1, elapsed * 9));
+
 		super.update(elapsed);
+	}
+
+	override function beatHit():Void {
+		super.beatHit();
+
+		if (iconArray[instPlaying] != null)
+			iconArray[instPlaying].scale.add(0.2, 0.2);
 	}
 
 	private function changeDiff(change:Int = 0)
