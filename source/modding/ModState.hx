@@ -1,7 +1,8 @@
 package modding;
 
-import flixel.text.FlxText;
 import haxe.Json;
+import modding.ModIcon;
+import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
@@ -20,7 +21,8 @@ class ModState extends MusicBeatState
 
     var selected:Int = 0;
 
-    var funnyInfo:FlxText = new FlxText(0,0,1280,"your mom", 24);
+    var funnyInfo:FlxText;
+	var descBg:FlxSprite;
 
     override function create()
     {
@@ -70,12 +72,32 @@ class ModState extends MusicBeatState
                 new_alpha.isMenuItem = true;
                 new_alpha.targetY = total_mods.length + selected_mods.indexOf(mod);
                 new_alpha.color = FlxColor.RED;
-
                 mod_alphabets.add(new_alpha);
             }
         }
 
+		descBg = new FlxSprite(0, FlxG.height - 90).makeGraphic(FlxG.width, 90, 0xFF000000);
+		descBg.alpha = 0.6;
+		add(descBg);
+
+		funnyInfo = new FlxText(descBg.x, descBg.y + 4, FlxG.width, "Template Description", 18);
+		funnyInfo.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER);
+		funnyInfo.borderColor = FlxColor.BLACK;
+		funnyInfo.borderSize = 1;
+		funnyInfo.borderStyle = OUTLINE;
+		funnyInfo.scrollFactor.set();
+		funnyInfo.screenCenter(X);
         add(funnyInfo);
+
+		var leText:String = "Press ENTER to enable / disable the currently selected mod / Press SHIFT to open homepage.";
+
+		var text:FlxText = new FlxText(-150, FlxG.height - 22, FlxG.width, leText, 16);
+		text.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT);
+		text.scrollFactor.set();
+		text.borderColor = FlxColor.BLACK;
+		text.borderSize = 1;
+		text.borderStyle = OUTLINE;
+		add(text);
 
         changeItem(0);
 
@@ -147,9 +169,6 @@ class ModState extends MusicBeatState
 
         FlxG.sound.play(Paths.sound("scrollMenu"));
 
-        //funnyInfo
-        funnyInfo.x = 0;
-
         if(mod_metadata.exists(total_mods[selected]))
         {
             var data:polymod.Polymod.ModMetadata = mod_metadata.get(total_mods[selected]);
@@ -164,15 +183,14 @@ class ModState extends MusicBeatState
                     contribs += contributor.name + " - " + contributor.role;
             }
 
+			funnyInfo.screenCenter(X);
+
             funnyInfo.text = (
                 data.title + " - " +
                 data.description + "\nHomepage: " +
                 data.homepage + "\nDevs: " + contribs + 
-                "\nv" + data.modVersion + " using " + data.license + " as it's license.\n" +
-                "Press SHIFT to open homepage"
+                "\nv" + data.modVersion + " using " + data.license + " as it's license."
             );
-
-            funnyInfo.y = 720 - funnyInfo.height - 4;
         }
     }
 
