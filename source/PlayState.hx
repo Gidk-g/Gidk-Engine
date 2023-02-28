@@ -1731,7 +1731,7 @@ class PlayState extends MusicBeatState {
 		if (PreferencesMenu.getPref('botplay'))
 			scoreTxt.text = "BOTPLAY";
 		else
-		    scoreTxt.text = "Score: " + songScore + " | Misses: " + songMisses + " | Accuracy: " + calculateRatingPercent() + "";
+		    scoreTxt.text = "Score: " + songScore + " / Misses: " + songMisses + " / Accuracy: " + calculateRatingPercent() + "";
 
 		if (controls.PAUSE && startedCountdown && canPause) {
 			persistentUpdate = false;

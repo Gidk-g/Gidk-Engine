@@ -235,7 +235,21 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 		else if (controls.BACK)
+		{
+			if (FlxG.sound.music != null)
+				FlxG.sound.music.stop();
+
+			if (vocals != null) {
+				vocals.stop();
+				vocals.destroy();
+				vocals = null;
+			}
+
+			if (!FlxG.sound.music.playing)
+				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0.7);
+
 			FlxG.switchState(new MainMenuState());
+		}
 
 		for (icon in iconArray)
 			icon.scale.set(FlxMath.lerp(icon.scale.x, 1, elapsed * 9), FlxMath.lerp(icon.scale.y, 1, elapsed * 9));
