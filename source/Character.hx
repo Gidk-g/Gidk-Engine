@@ -547,7 +547,12 @@ class Character extends FlxSprite
 				playAnim('idle');
 		}
 
-		if(Assets.exists(Paths.hx("characters/" + curCharacter)))
+		if (Assets.exists(Paths.json2("characters/" + curCharacter)))
+		{
+			characterJson(Paths.json2("characters/" + curCharacter));
+		}
+
+		if (Assets.exists(Paths.hx("characters/" + curCharacter)))
 		{
 			script = new HScriptHandler(Paths.hx("characters/" + curCharacter));
 			script.interp.variables.set("character", this);
@@ -581,6 +586,16 @@ class Character extends FlxSprite
 				}
 			}
 		}
+	}
+
+    function characterJson(path:String)
+	{
+		var rawJson:String = '';
+
+		if (Assets.exists(path))
+			rawJson = Assets.getText(path);
+
+		return Json.parse(rawJson);
 	}
 
 	function loadMappedAnims()
