@@ -548,7 +548,6 @@ class Character extends FlxSprite
 
 		if (Assets.exists(Paths.json2("characters/" + curCharacter)))
 		{
-			// characterJson(Paths.json2("characters/" + curCharacter));
 			trace('sex');
 		}
 
