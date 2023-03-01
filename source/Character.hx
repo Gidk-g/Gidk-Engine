@@ -1,5 +1,6 @@
 package;
 
+import haxe.Json;
 import scripting.HScriptHandler;
 import flixel.math.FlxPoint;
 import openfl.Assets;
