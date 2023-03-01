@@ -948,15 +948,15 @@ class PlayState extends MusicBeatState {
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 22);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.25;
+		scoreTxt.borderSize = 2;
 		add(scoreTxt);
 
-		timeTxt = new FlxText(0, 0, 0, "0:00 / 0:00", 20);
-		timeTxt.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
-		timeTxt.borderSize = 1.25;
+		timeTxt = new FlxText(0, 0, 0, "0:00 / 0:00", 22);
+		timeTxt.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt.borderSize = 2;
 		timeTxt.screenCenter(X);
 		timeTxt.y = PreferencesMenu.getPref('downscroll') ? FlxG.height - (timeTxt.height + 30) : 30;
 		timeTxt.alpha = 0.001;
