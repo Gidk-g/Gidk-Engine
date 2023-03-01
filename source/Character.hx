@@ -32,8 +32,6 @@ class Character extends FlxSprite
 
 	public var dontDance:Bool = false;
 
-	public var danceLeftAndRight:Bool = false;
-
 	public var suspendOtherAnims:Bool = false;
 
 	public var heyTimer:Float = 0;
@@ -41,6 +39,8 @@ class Character extends FlxSprite
 	public var specialAnim:Bool = false;
 
 	public var singDuration:Float = 4;
+
+	public var danceIdle:Bool = false;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -162,8 +162,6 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('danceRight');
-
-				danceLeftAndRight = true;
 			case 'mom':
 				frames = Paths.getSparrowAtlas('characters/Mom_Assets');
 
@@ -550,7 +548,8 @@ class Character extends FlxSprite
 
 		if (Assets.exists(Paths.json2("characters/" + curCharacter)))
 		{
-			characterJson(Paths.json2("characters/" + curCharacter));
+			// characterJson(Paths.json2("characters/" + curCharacter));
+			trace('sex');
 		}
 
 		if (Assets.exists(Paths.hx("characters/" + curCharacter)))
@@ -560,6 +559,7 @@ class Character extends FlxSprite
 			script.callFunction("createCharacter", [curCharacter, isPlayer]);
 		}
 
+		recalculateDanceIdle();
 		dance();
 
 		animation.finish();
@@ -587,16 +587,6 @@ class Character extends FlxSprite
 				}
 			}
 		}
-	}
-
-    function characterJson(path:String)
-	{
-		var rawJson:String = '';
-
-		if (Assets.exists(path))
-			rawJson = Assets.getText(path);
-
-		return Json.parse(rawJson);
 	}
 
 	function loadMappedAnims()
@@ -737,23 +727,11 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-car' | 'gf-christmas' | 'gf-pixel' | 'gf-tankmen':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				case 'pico-speaker':
-					// do nothing LOL
 				case 'tankman':
 					if (!animation.curAnim.name.endsWith('DOWN-alt'))
 						playAnim('idle');
 				default:
-					if(danceLeftAndRight)
+					if (danceIdle)
 					{
 						danced = !danced;
 
@@ -762,10 +740,37 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
-					else
+					else if (animation.getByName('idle') != null) {
 						playAnim('idle');
+					}
 			}
 		}
+	}
+
+	public var danceEveryNumBeats:Int = 2;
+	private var settingCharacterUp:Bool = true;
+
+	public function recalculateDanceIdle() {
+		var lastDanceIdle:Bool = danceIdle;
+
+		danceIdle = (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null);
+
+		if(settingCharacterUp)
+		{
+			danceEveryNumBeats = (danceIdle ? 1 : 2);
+		}
+		else if(lastDanceIdle != danceIdle)
+		{
+			var calc:Float = danceEveryNumBeats;
+			if(danceIdle)
+				calc /= 2;
+			else
+				calc *= 2;
+
+			danceEveryNumBeats = Math.round(Math.max(calc, 1));
+		}
+
+		settingCharacterUp = false;
 	}
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void

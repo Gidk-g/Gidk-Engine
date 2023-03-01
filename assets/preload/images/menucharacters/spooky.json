@@ -9,13 +9,10 @@
 			"flipX": false,
 			"flipY": false,
 			"offset": [
-				40,
-				-50
+				0,
+				-80
 			]
 		}
-	],
-	"danceAnimation": [
-		"idle"
 	],
 	"scale": 1,
 	"antialiasing": true,
