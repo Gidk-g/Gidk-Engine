@@ -687,7 +687,7 @@ class PlayState extends MusicBeatState {
 				}
 		}
 
-		switch(Paths.formatToSongPath(SONG.song))
+		switch (Paths.formatToSongPath(SONG.song))
 		{
 			case 'stress':
 				GameOverSubstate.characterName = 'bf-holding-gf-dead';
