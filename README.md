@@ -4,22 +4,27 @@ This is the repository for Gidk Engine, an engine created for making and playing
 
 <details>
   <summary><h2>To Do</h2></summary>
+
 - Custom Events
 - Custom Shaders
 - Custom Dialogue
 - Custom Note Skin
 - Custom Note Type
+
 </details>
 
 <details>
   <summary><h2>Credits</h2></summary>
+
 * [Gidk](https://github.com/Gidk-g) - Programmer of Gidk Engine
 * [Teotm](https://github.com/teotm) - Assistant Programmer of Gidk Engine
 * [Leather128](https://github.com/Leather128) - Programmer of [Funkin Multikey](https://github.com/Leather128/Funkin-Multikey)
+
 </details>
 
 <details>
   <summary><h2>Compiling The Game</h2></summary>
+
 1. [Install git-scm](https://git-scm.com/downloads) if you don't have it already.
 2. [Install Haxe](https://haxe.org/download/)
 3. Open up your Command Prompt/PowerShell or Terminal and type in these following commands in order to install the Haxelibs needed specifically for *Gidk Engine*:
@@ -33,4 +38,5 @@ haxelib run hmm install
 * Windows SDK (10.0.17763.0)
 ```
 5. Run `lime test <windows/linux/mac>`, choosing your OS. (Ex. `lime test windows`)
+
 </details>
