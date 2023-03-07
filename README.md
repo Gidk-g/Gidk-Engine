@@ -10,7 +10,6 @@ This is the repository for Gidk Engine, an engine created for making and playing
 - Custom Dialogue
 - Custom Note Skin
 - Custom Note Type
-
 </details>
 
 <details>
@@ -19,7 +18,6 @@ This is the repository for Gidk Engine, an engine created for making and playing
 * [Gidk](https://github.com/Gidk-g) - Programmer of Gidk Engine
 * [Teotm](https://github.com/teotm) - Assistant Programmer of Gidk Engine
 * [Leather128](https://github.com/Leather128) - Programmer of [Funkin Multikey](https://github.com/Leather128/Funkin-Multikey)
-
 </details>
 
 <details>
@@ -38,5 +36,4 @@ haxelib run hmm install
 * Windows SDK (10.0.17763.0)
 ```
 5. Run `lime test <windows/linux/mac>`, choosing your OS. (Ex. `lime test windows`)
-
 </details>
