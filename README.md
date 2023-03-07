@@ -3,7 +3,10 @@
 This is the repository for Gidk Engine, an engine created for making and playing mods for Friday Night Funkin'.
 
 <details>
-  <summary><h2>To Do</h2></summary>
+  <summary><h2>Info</h2></summary>
+
+<details>
+  <summary>To Do</summary>
 
 - Custom Events
 - Custom Shaders
@@ -14,7 +17,7 @@ This is the repository for Gidk Engine, an engine created for making and playing
 </details>
 
 <details>
-  <summary><h2>Credits</h2></summary>
+  <summary>Credits</summary>
 
 * [Gidk](https://github.com/Gidk-g) - Programmer of Gidk Engine
 * [Teotm](https://github.com/teotm) - Assistant Programmer of Gidk Engine
@@ -23,7 +26,7 @@ This is the repository for Gidk Engine, an engine created for making and playing
 </details>
 
 <details>
-  <summary><h2>Compiling The Game</h2></summary>
+  <summary>Compiling The Game</summary>
 
 1. [Install git-scm](https://git-scm.com/downloads) if you don't have it already.
 2. [Install Haxe](https://haxe.org/download/)
@@ -39,4 +42,5 @@ haxelib run hmm install
 ```
 5. Run `lime test <windows/linux/mac>`, choosing your OS. (Ex. `lime test windows`)
 
+</details>
 </details>
