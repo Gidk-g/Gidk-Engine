@@ -25,6 +25,7 @@ This is the repository for Gidk Engine, an engine created for making and playing
 
 </details>
 </details>
+
 <details>
   <summary><h2>How to build</h2></summary>
 
