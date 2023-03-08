@@ -1,6 +1,7 @@
 # Gidk Engine
 
 This is the repository for Gidk Engine, an engine created for making and playing mods for Friday Night Funkin'.
+
 <details>
   <summary><h2>Info</h2></summary>
 
