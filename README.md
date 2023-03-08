@@ -24,9 +24,10 @@ This is the repository for Gidk Engine, an engine created for making and playing
 * [Leather128](https://github.com/Leather128) - Programmer of [Funkin Multikey](https://github.com/Leather128/Funkin-Multikey)
 
 </details>
+</details>
 
 <details>
-  <summary>How to build</summary>
+  <summary><h2>How to build</h2></summary>
 
 > **Open the instructions for your platform**
 <details>
@@ -54,4 +55,4 @@ This is the repository for Gidk Engine, an engine created for making and playing
 10. Once the libraries are installed, run `haxelib run lime test windows` to compile and launch the game (may take a long time)
     - ℹ You can run `haxelib run lime setup` to make the lime command global, allowing you to execute `lime test windows` directly.
 </details>
-</details>
+<details>
